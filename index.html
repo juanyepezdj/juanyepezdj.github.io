@@ -3,708 +3,881 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JuanK-DJ | Servicios profesionales de DJ en Quito</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>JuanK-DJ | Experiencias Musicales Inolvidables en Quito</title>
+    <meta name="description" content="DJ profesional, disco móvil y amplificación para bodas, quinceaños y eventos corporativos en Quito.">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap');
-        
+        /* =========================================
+           CSS UNIFICADO Y AUTOCONTENIDO
+           ========================================= */
+        :root {
+            --bg-dark: #050505;
+            --bg-card: #0f0f0f;
+            --text-main: #ffffff;
+            --text-muted: #a1a1a1;
+            
+            /* Colores de tu logo */
+            --accent-green: #2da87c;
+            --accent-blue: #1e8bc3;
+            --gradient: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-blue) 100%);
+            
+            --font-heading: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-body: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #0a0a0a;
-            color: white;
-            scroll-behavior: smooth;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
+
+        /* Tipografía */
+        h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.1; font-weight: 800; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .section-padding { padding: 6rem 0; }
         
-        .hero-gradient {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        .section-header { text-align: center; max-width: 700px; margin: 0 auto 4rem; }
+        .section-tag {
+            display: inline-block; font-size: 0.8rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 2px; color: var(--accent-green);
+            margin-bottom: 1rem; padding: 0.5rem 1rem;
+            background: rgba(45, 168, 124, 0.1); border-radius: 50px;
+            border: 1px solid rgba(45, 168, 124, 0.2);
         }
-        
-        .vinyl-spin {
-            animation: spin 4s linear infinite;
+        .section-title { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1.5rem; text-transform: uppercase; }
+        .accent { background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .section-desc { color: var(--text-muted); font-size: 1.1rem; }
+
+        /* Botones */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 0.75rem; padding: 1rem 2rem; border-radius: 50px;
+            font-family: var(--font-heading); font-weight: 600; font-size: 1rem;
+            cursor: pointer; border: none; transition: var(--transition);
         }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .btn-primary { background: var(--gradient); color: white; box-shadow: 0 4px 15px rgba(45, 168, 124, 0.3); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(30, 139, 195, 0.5); }
+        .btn-outline { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: white; }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; }
+        .btn-block { width: 100%; }
+        .btn-nav { padding: 0.6rem 1.5rem; font-size: 0.9rem; background: white; color: black; font-weight: 700; }
+        .btn-nav:hover { background: var(--gradient); color: white; }
+
+        /* Navbar */
+        .navbar {
+            position: fixed; top: 0; left: 0; width: 100%; height: 90px;
+            z-index: 1000; transition: var(--transition);
+            border-bottom: 1px solid transparent;
         }
+        .navbar.scrolled { background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(20px); border-bottom-color: rgba(255,255,255,0.05); }
+        .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; height: 100%; display: flex; align-items: center; justify-content: space-between; }
         
-        .pulse {
-            animation: pulse 2s infinite;
+        /* Estilo del Logo */
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .logo-img {
+            height: 65px;
+            width: auto;
+            border-radius: 12px;
+            background: white;
+            padding: 4px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: var(--transition);
         }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        .logo:hover .logo-img { transform: scale(1.05); }
+
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-link {
+            font-size: 0.9rem; font-weight: 500; text-transform: uppercase;
+            letter-spacing: 1px; color: var(--text-muted);
+            position: relative; padding: 0.5rem 0;
         }
-        
-        .glow-text {
-            text-shadow: 0 0 10px rgba(100, 149, 237, 0.7);
+        .nav-link:hover, .nav-link.active { color: white; }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 0; height: 2px; background: var(--gradient);
+            transition: var(--transition);
         }
-        
-        .mixer-control {
-            transition: all 0.3s ease;
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .nav-actions { display: flex; align-items: center; gap: 1rem; }
+        .mobile-menu-btn { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 5px; }
+        .mobile-menu-btn span { width: 25px; height: 2px; background: white; transition: var(--transition); }
+
+        /* Hero Section */
+        .hero { position: relative; height: 100vh; min-height: 700px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .hero-bg { position: absolute; inset: 0; z-index: -1; }
+        .hero-bg-img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.4) saturate(1.2); }
+        .hero-overlay { position: absolute; inset: 0; background: radial-gradient(circle at center, transparent 0%, var(--bg-dark) 90%); }
+        .hero-content { text-align: center; z-index: 2; padding: 0 1rem; max-width: 900px; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.5rem 1rem; background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 50px;
+            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;
+            margin-bottom: 2rem; backdrop-filter: blur(10px);
         }
-        
-        .mixer-control:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        .pulse-dot { width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%; box-shadow: 0 0 0 0 rgba(45, 168, 124, 0.7); animation: pulse-green 2s infinite; }
+        @keyframes pulse-green { 70% { box-shadow: 0 0 0 10px rgba(45, 168, 124, 0); } 100% { box-shadow: 0 0 0 0 rgba(45, 168, 124, 0); } }
+        .hero-title { font-size: clamp(3rem, 8vw, 6rem); line-height: 0.9; margin-bottom: 1.5rem; text-transform: uppercase; }
+        .hero-title .line { display: block; }
+        .hero-title .highlight { background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .hero-subtitle { font-size: clamp(1rem, 2vw, 1.25rem); color: var(--text-muted); max-width: 600px; margin: 0 auto 2.5rem; }
+        .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem; }
+        .hero-stats {
+            display: flex; justify-content: center; align-items: center; gap: 2rem;
+            padding: 1.5rem 2rem; background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05); border-radius: 20px;
+            backdrop-filter: blur(10px); display: inline-flex;
         }
-        
-        .event-card {
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+        .stat { text-align: center; }
+        .stat-number { display: block; font-family: var(--font-heading); font-size: 2rem; font-weight: 800; line-height: 1; color: white; }
+        .stat-number::after { content: '+'; font-size: 0.6em; vertical-align: super; color: var(--accent-green); }
+        .stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-top: 0.5rem; }
+        .stat-divider { width: 1px; height: 40px; background: rgba(255,255,255,0.1); }
+
+        /* Marquee */
+        .marquee-section { padding: 2rem 0; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); background: var(--bg-dark); overflow: hidden; }
+        .marquee { display: flex; gap: 2rem; white-space: nowrap; }
+        .marquee-content {
+            display: flex; gap: 2rem; animation: marquee 20s linear infinite;
+            font-family: var(--font-heading); font-weight: 800; font-size: 1.5rem;
+            text-transform: uppercase; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.3);
         }
+        .marquee-content .dot { color: var(--accent-green); -webkit-text-stroke: 0; }
+        @keyframes marquee { 100% { transform: translateX(-100%); } }
+
+        /* Galería (Estilo Minimalista) */
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .gallery-item { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 16/10; cursor: pointer; background: #111; display: block; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .gallery-item:hover img { transform: scale(1.08); }
         
-        .event-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        .gallery-overlay { 
+            position: absolute; inset: 0; background: rgba(0, 0, 0, 0.4);
+            display: flex; align-items: center; justify-content: center; 
+            opacity: 0; transition: var(--transition); 
         }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
         
-        .equalizer-bar {
-            animation: equalize 1.5s infinite ease-in-out;
-            transform-origin: bottom;
+        .gallery-overlay svg {
+            width: 40px; height: 40px; color: white;
+            transform: scale(0.5); transition: transform 0.3s ease;
         }
-        
-        .equalizer-bar:nth-child(1) { animation-delay: 0.1s; height: 20px; }
-        .equalizer-bar:nth-child(2) { animation-delay: 0.3s; height: 30px; }
-        .equalizer-bar:nth-child(3) { animation-delay: 0.5s; height: 40px; }
-        .equalizer-bar:nth-child(4) { animation-delay: 0.2s; height: 25px; }
-        .equalizer-bar:nth-child(5) { animation-delay: 0.4s; height: 35px; }
-        
-        @keyframes equalize {
-            0%, 100% { transform: scaleY(0.5); }
-            50% { transform: scaleY(1.5); }
+        .gallery-item:hover .gallery-overlay svg { transform: scale(1); }
+
+        /* Lightbox */
+        .lightbox {
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0;
+            width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px); align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .lightbox.active { display: flex; opacity: 1; }
+        .lightbox-img { max-width: 90%; max-height: 90%; border-radius: 12px; box-shadow: 0 0 50px rgba(0, 0, 0, 0.5); transform: scale(0.9); transition: transform 0.3s ease; }
+        .lightbox.active .lightbox-img { transform: scale(1); }
+        .lightbox-close { position: absolute; top: 20px; right: 40px; color: white; font-size: 50px; font-weight: bold; cursor: pointer; transition: color 0.3s; line-height: 1; }
+        .lightbox-close:hover { color: var(--accent-green); }
+
+        /* Services */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .service-card {
+            background: var(--bg-card); border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 24px; padding: 3rem 2rem; position: relative;
+            transition: var(--transition); overflow: hidden;
+        }
+        .service-card:hover { transform: translateY(-10px); border-color: rgba(30, 139, 195, 0.3); }
+        .service-icon {
+            width: 60px; height: 60px; background: rgba(30, 139, 195, 0.1);
+            border-radius: 16px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 2rem;
+        }
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .service-card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2rem; }
+        .service-list { margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.75rem; }
+        .service-list li { display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: var(--text-muted); }
+        .service-list li::before { content: '✓'; color: var(--accent-green); font-weight: bold; }
+        .service-link { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; color: white; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        .service-link:hover { color: var(--accent-blue); }
+
+        /* Know-How Section (Ex Experience) */
+        .experience { position: relative; padding: 8rem 0; overflow: hidden; }
+        .experience-bg { position: absolute; inset: 0; z-index: -1; }
+        .parallax-img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.3); }
+        .experience-overlay { position: absolute; inset: 0; background: linear-gradient(to right, var(--bg-dark) 0%, transparent 100%); }
+        .experience-content { display: flex; justify-content: flex-start; }
+        .experience-text { max-width: 600px; }
+        .experience-text .section-title { margin-bottom: 2rem; }
+        .experience-text p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 3rem; }
+        .experience-features { display: flex; flex-wrap: wrap; gap: 2rem; }
+        .feature { display: flex; align-items: center; gap: 1rem; }
+        .feature-icon { width: 50px; height: 50px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent-green); }
+        .feature span { font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Testimonials */
+        .testimonials { background: var(--bg-card); }
+        .testimonials-slider { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .testimonial-card { background: var(--bg-dark); padding: 3rem 2rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); }
+        .quote-icon { font-size: 2rem; color: var(--accent-green); opacity: 0.2; margin-bottom: 1.5rem; }
+        .testimonial-text { font-size: 1.1rem; font-style: italic; margin-bottom: 2rem; color: #d1d5db; }
+        .testimonial-author { display: flex; align-items: center; gap: 1rem; }
+        .author-avatar { width: 50px; height: 50px; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; }
+        .author-info strong { display: block; font-size: 0.95rem; }
+        .author-info span { font-size: 0.8rem; color: var(--text-muted); }
+
+        /* Contact */
+        .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; }
+        .contact-info p { color: var(--text-muted); margin-bottom: 3rem; font-size: 1.1rem; }
+        .contact-details { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 3rem; }
+        .contact-item { display: flex; align-items: center; gap: 1.5rem; }
+        .contact-icon { width: 50px; height: 50px; background: rgba(255,255,255,0.05); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 1.2rem; }
+        .contact-item span { display: block; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .contact-item strong { font-size: 1.1rem; font-weight: 600; }
+        .social-links { display: flex; gap: 1rem; }
+        .social-links a { width: 45px; height: 45px; border-radius: 50%; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: white; transition: var(--transition); }
+        .social-links a:hover { background: var(--gradient); transform: translateY(-3px); }
+
+        .contact-form { background: var(--bg-card); padding: 3rem; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); }
+        .form-group { position: relative; margin-bottom: 2rem; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 1rem 0; color: white; font-family: var(--font-body); font-size: 1rem;
+            transition: var(--transition); border-radius: 0;
+        }
+        .form-group select { cursor: pointer; appearance: none; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right center; }
+        .form-group select option { background: var(--bg-card); color: white; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-bottom-color: var(--accent-blue); }
+        .form-group label {
+            position: absolute; top: 1rem; left: 0; color: var(--text-muted);
+            pointer-events: none; transition: var(--transition); font-size: 1rem;
+        }
+        .form-group input:focus ~ label, .form-group input:not(:placeholder-shown) ~ label,
+        .form-group textarea:focus ~ label, .form-group textarea:not(:placeholder-shown) ~ label {
+            top: -0.5rem; font-size: 0.75rem; color: var(--accent-blue);
+        }
+        .form-group input[type="date"] { color-scheme: dark; }
+        .form-group input[type="date"]:focus ~ label, .form-group input[type="date"]:valid ~ label { top: -0.5rem; font-size: 0.75rem; color: var(--accent-blue); }
+
+        /* Footer */
+        .footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 5rem 0 2rem; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
+        .footer-brand p { color: var(--text-muted); margin-top: 1.5rem; max-width: 300px; }
+        .footer-links h4 { font-size: 1rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-links a, .footer-links p { display: block; color: var(--text-muted); margin-bottom: 0.75rem; font-size: 0.95rem; }
+        .footer-links a:hover { color: var(--accent-green); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem; display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed; inset: 0; background: var(--bg-dark); z-index: 999;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: var(--transition);
+        }
+        .mobile-menu.active { opacity: 1; visibility: visible; }
+        .mobile-menu-content { display: flex; flex-direction: column; gap: 2rem; text-align: center; }
+        .mobile-link { font-family: var(--font-heading); font-size: 2rem; font-weight: 700; text-transform: uppercase; }
+        .mobile-link:hover { color: var(--accent-green); }
+
+        /* Reveal Animations */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .contact-wrapper { grid-template-columns: 1fr; gap: 3rem; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .nav-links, .btn-nav { display: none; }
+            .mobile-menu-btn { display: flex; }
+            .nav-actions { gap: 0.5rem; }
+            .hero-title { font-size: 3rem; }
+            .hero-stats { flex-direction: column; gap: 1rem; padding: 1rem; }
+            .stat-divider { width: 40px; height: 1px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-bottom { flex-direction: column; text-align: center; gap: 1rem; }
+            .logo-img { height: 50px; }
+            .gallery-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 0 1rem; }
+            .section-padding { padding: 4rem 0; }
+            .hero-cta { flex-direction: column; width: 100%; }
+            .btn { width: 100%; }
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="fixed w-full z-50 bg-black bg-opacity-90 backdrop-filter backdrop-blur-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <div class="flex-shrink-0 flex items-center">
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center mr-3">
-                            <i class="fas fa-compact-disc text-white text-xl vinyl-spin"></i>
-                        </div>
-                        <span class="text-white text-2xl font-bold glow-text">JuanK<span class="text-blue-400">-DJ</span></span>
-                    </div>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#inicio" class="text-white hover:text-blue-400 px-3 py-2 rounded-md text-lg font-medium transition duration-300">Inicio</a>
-                        <a href="#servicios" class="text-white hover:text-blue-400 px-3 py-2 rounded-md text-lg font-medium transition duration-300">Servicios</a>
-                        <a href="#galeria" class="text-white hover:text-blue-400 px-3 py-2 rounded-md text-lg font-medium transition duration-300">Galería</a>
-                        <a href="#contacto" class="text-white hover:text-blue-400 px-3 py-2 rounded-md text-lg font-medium transition duration-300">Contacto</a>
-                    </div>
-                </div>
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-white hover:text-blue-400 focus:outline-none">
-                        <i class="fas fa-bars text-2xl"></i>
-                    </button>
-                </div>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#inicio" class="logo">
+                <img src="logo.png" alt="JuanK-DJ Logo" class="logo-img">
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="#inicio" class="nav-link active">Inicio</a>
+                <a href="#galeria" class="nav-link">Galería</a>
+                <a href="#servicios" class="nav-link">Servicios</a>
+                <a href="#know-how" class="nav-link">Know-How</a>
+                <a href="#contacto" class="nav-link">Contacto</a>
             </div>
-        </div>
-        
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-95">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#inicio" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-800">Inicio</a>
-                <a href="#servicios" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-800">Servicios</a>
-                <a href="#galeria" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-800">Galería</a>
-                <a href="#contacto" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-800">Contacto</a>
+            <div class="nav-actions">
+                <a href="#contacto" class="btn btn-nav">Reservar</a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menú">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="inicio" class="hero-gradient pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-12 md:mb-0">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                        <span class="text-blue-400">Experiencia</span> musical <span class="text-purple-400">a otro</span> nivel.
-                    </h1>
-                    <p class="text-xl text-gray-300 mb-8 max-w-lg">
-                        Servicios profesionales de DJ en Quito. Transformo tus eventos en experiencias inolvidables con el mejor sonido y ambiente.
-                    </p>
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="#contacto" class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center">
-                            <i class="fas fa-calendar-check mr-2"></i> Reservar ahora
-                        </a>
-                        <a href="#servicios" class="border-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 flex items-center justify-center">
-                            <i class="fas fa-info-circle mr-2"></i> Más información
-                        </a>
-                    </div>
-                </div>
-                <div class="md:w-1/2 relative flex justify-center">
-                    <div class="relative w-64 h-64 sm:w-80 sm:h-80">
-                        <div class="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 opacity-20 blur-3xl pulse"></div>
-                        <div class="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center vinyl-spin">
-                            <div class="w-full h-full rounded-full bg-black flex items-center justify-center" style="background: radial-gradient(circle, #111 30%, #000 70%);">
-                                <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center">
-                                    <div class="w-8 h-8 rounded-full bg-black"></div>
-                                </div>
-                                <div class="absolute w-4 h-4 bg-blue-400 rounded-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="absolute -bottom-10 left-0 right-0 flex justify-center">
-                        <div class="flex space-x-2">
-                            <div class="equalizer-bar w-2 bg-blue-400 rounded-t"></div>
-                            <div class="equalizer-bar w-2 bg-purple-400 rounded-t"></div>
-                            <div class="equalizer-bar w-2 bg-blue-400 rounded-t"></div>
-                            <div class="equalizer-bar w-2 bg-purple-400 rounded-t"></div>
-                            <div class="equalizer-bar w-2 bg-blue-400 rounded-t"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Servicios Section -->
-    <section id="servicios" class="py-20 px-4 sm:px-6 lg:px-8 bg-black">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    <span class="text-blue-400">Servicios</span> de DJ Profesional
-                </h2>
-                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
-                    Ofrezco una variedad de servicios para adaptarme a cualquier tipo de evento en Quito y sus alrededores.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Servicio 1 -->
-                <div class="event-card rounded-xl p-8 border border-gray-800 hover:border-blue-400">
-                    <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mb-6 mx-auto">
-                        <i class="fas fa-glass-cheers text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-center mb-4">Bodas</h3>
-                    <p class="text-gray-400 text-center mb-6">
-                        Creo la atmósfera perfecta para tu boda, desde la ceremonia hasta la fiesta, con música que refleje tu personalidad.
-                    </p>
-                    <ul class="space-y-2 text-gray-300">
-                        <li class="flex items-center">
-                            <i class="fas fa-check-circle text-blue-400 mr-2"></i> Lista de reproducción personalizada
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check-circle text-blue-400 mr-2"></i> Equipo de sonido profesional
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check-circle text-blue-400 mr-2"></i> Iluminación ambiental
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check-circle text-blue-400 mr-2"></i> Pirotecnia para interiores y exteriores
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Servicio 2 -->
-                <div class="event-card rounded-xl p-8 border border-gray-800 hover:border-purple-400">
-                    <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center mb-6 mx-auto">
-                        <i class="fas fa-birthday-cake text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-center mb-4">Fiestas Privadas</h3>
-                    <p class="text-gray-400 text-center mb-6">
-                        Desde cumpleaños hasta aniversarios, hago que tu celebración sea única con música seleccionada especialmente para la ocasión.
-                    </p>
-                    <ul class="space-y-2 text-gray-300">
-                        <li class="flex items-center">
-                            <i class="fas fa-check-circle text-purple-400 mr-2"></i> Variedad de géneros musicales
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check-circle text-purple-400 mr-2"></i> Iluminación LED Rítmica
-                        </li>
-                                                <li class="flex items-center">
-                            <i class="fas fa-check-circle text-purple-400 mr-2"></i> Efectos especiales opcionales
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Servicio 3 -->
-                <div class="event-card rounded-xl p-8 border border-gray-800 hover:border-blue-400">
-                    <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mb-6 mx-auto">
-                        <i class="fas fa-building text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-center mb-4">Eventos Corporativos</h3>
-                    <p class="text-gray-400 text-center mb-6">
-                        Música profesional para tus eventos empresariales, lanzamientos de producto o fiestas de fin de año corporativas.
-                    </p>
-                    <ul class="space-y-2 text-gray-300">
-                        <li class="flex items-center">
-                            <i class="fas fa-check-circle text-blue-400 mr-2"></i> Música adaptada al perfil de la empresa
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check-circle text-blue-400 mr-2"></i> Equipo de sonido de alta calidad
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check-circle text-blue-400 mr-2"></i> Ambientación profesional
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Galería Section -->
-    <section id="galeria" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-gray-900">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    <span class="text-purple-400">Galería</span> de Eventos
-                </h2>
-                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
-                    Algunos momentos capturados en eventos donde he participado como DJ profesional.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Imagen 1 -->
-                <div class="relative group overflow-hidden rounded-xl h-64">
-                    <img src="boda.png" alt="Evento de DJ" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70 group-hover:opacity-50 transition duration-300"></div>
-                    <div class="absolute bottom-0 left-0 p-6 w-full">
-                        <h3 class="text-white text-xl font-bold mb-1">Boda en Quito</h3>
-                        <p class="text-gray-300 text-sm">Gran fiesta con mezcla de géneros</p>
-                    </div>
-                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                        <div class="bg-black bg-opacity-70 rounded-full p-4">
-                            <i class="fas fa-expand text-white text-2xl"></i>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Imagen 2 -->
-                <div class="relative group overflow-hidden rounded-xl h-64">
-                    <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Evento de DJ" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70 group-hover:opacity-50 transition duration-300"></div>
-                    <div class="absolute bottom-0 left-0 p-6 w-full">
-                        <h3 class="text-white text-xl font-bold mb-1">Fiesta Privada</h3>
-                        <p class="text-gray-300 text-sm">Ambiente electrizante</p>
-                    </div>
-                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                        <div class="bg-black bg-opacity-70 rounded-full p-4">
-                            <i class="fas fa-expand text-white text-2xl"></i>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Imagen 3 -->
-                <div class="relative group overflow-hidden rounded-xl h-64">
-                    <img src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Evento de DJ" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70 group-hover:opacity-50 transition duration-300"></div>
-                    <div class="absolute bottom-0 left-0 p-6 w-full">
-                        <h3 class="text-white text-xl font-bold mb-1">Evento Corporativo</h3>
-                        <p class="text-gray-300 text-sm">Música profesional para empresas</p>
-                    </div>
-                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                        <div class="bg-black bg-opacity-70 rounded-full p-4">
-                            <i class="fas fa-expand text-white text-2xl"></i>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Imagen 4 -->
-                <div class="relative group overflow-hidden rounded-xl h-64">
-                    <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Evento de DJ" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70 group-hover:opacity-50 transition duration-300"></div>
-                    <div class="absolute bottom-0 left-0 p-6 w-full">
-                        <h3 class="text-white text-xl font-bold mb-1">Concierto en Vivo</h3>
-                        <p class="text-gray-300 text-sm">Colaboración con artistas locales</p>
-                    </div>
-                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                        <div class="bg-black bg-opacity-70 rounded-full p-4">
-                            <i class="fas fa-expand text-white text-2xl"></i>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Imagen 5 -->
-                <div class="relative group overflow-hidden rounded-xl h-64">
-                    <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Evento de DJ" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70 group-hover:opacity-50 transition duration-300"></div>
-                    <div class="absolute bottom-0 left-0 p-6 w-full">
-                        <h3 class="text-white text-xl font-bold mb-1">After Office</h3>
-                        <p class="text-gray-300 text-sm">Música para relajar después del trabajo</p>
-                    </div>
-                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                        <div class="bg-black bg-opacity-70 rounded-full p-4">
-                            <i class="fas fa-expand text-white text-2xl"></i>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Imagen 6 -->
-                <div class="relative group overflow-hidden rounded-xl h-64">
-                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Evento de DJ" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70 group-hover:opacity-50 transition duration-300"></div>
-                    <div class="absolute bottom-0 left-0 p-6 w-full">
-                        <h3 class="text-white text-xl font-bold mb-1">Festival Musical</h3>
-                        <p class="text-gray-300 text-sm">Participación en festival local</p>
-                    </div>
-                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                        <div class="bg-black bg-opacity-70 rounded-full p-4">
-                            <i class="fas fa-expand text-white text-2xl"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <button class="border-2 border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">
-                    Ver más fotos <i class="fas fa-arrow-right ml-2"></i>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonios Section -->
-    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-900 to-black">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    Lo que dicen mis <span class="text-purple-400">clientes</span>
-                </h2>
-                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
-                    Testimonios reales de personas que han confiado en mis servicios para sus eventos.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Testimonio 1 -->
-                <div class="bg-gray-900 rounded-xl p-8 border border-gray-800">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center mr-4">
-                            <span class="text-white font-bold text-xl">M</span>
-                        </div>
-                        <div>
-                            <h4 class="font-bold">María G.</h4>
-                            <p class="text-gray-400 text-sm">Boda en Cumbayá</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 mb-6">
-                        "Juan hizo que nuestra boda fuera perfecta. Su selección musical capturó exactamente lo que queríamos y mantuvo a todos bailando toda la noche. ¡Totalmente recomendado!"
-                    </p>
-                    <div class="flex">
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                    </div>
-                </div>
-                
-                <!-- Testimonio 2 -->
-                <div class="bg-gray-900 rounded-xl p-8 border border-gray-800">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 flex items-center justify-center mr-4">
-                            <span class="text-white font-bold text-xl">C</span>
-                        </div>
-                        <div>
-                            <h4 class="font-bold">Carlos R.</h4>
-                            <p class="text-gray-400 text-sm">Fiesta de 15 años</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 mb-6">
-                        "Contraté a JuanK-DJ para la fiesta de quince de mi hija y superó todas nuestras expectativas. Su capacidad para leer a la multitud y mantener la energía alta fue impresionante."
-                    </p>
-                    <div class="flex">
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                    </div>
-                </div>
-                
-                <!-- Testimonio 3 -->
-                <div class="bg-gray-900 rounded-xl p-8 border border-gray-800">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center mr-4">
-                            <span class="text-white font-bold text-xl">A</span>
-                        </div>
-                        <div>
-                            <h4 class="font-bold">Andrea P.</h4>
-                            <p class="text-gray-400 text-sm">Evento Corporativo</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 mb-6">
-                        "Para nuestro evento de fin de año corporativo, Juan fue excelente. Creó el ambiente perfecto con una mezcla de música que complació a todos, desde los más jóvenes hasta los ejecutivos."
-                    </p>
-                    <div class="flex">
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star-half-alt text-yellow-400"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contacto Section -->
-    <section id="contacto" class="py-20 px-4 sm:px-6 lg:px-8 bg-black">
-    <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                <span class="text-blue-400">Contáctame</span> para tu evento
-            </h2>
-            <p class="text-xl text-gray-400 max-w-3xl mx-auto">
-                Completa el formulario y me pondré en contacto contigo para discutir los detalles de tu evento.
-            </p>
-        </div>
-        
-        <div class="flex flex-col lg:flex-row gap-12">
-            <div class="lg:w-1/2">
-                <!-- Formulario modificado para formsubmit.co -->
-                <form action="https://formsubmit.co/juanyepezdj@gmail.com" method="POST" class="space-y-6">
-                    <!-- Campos ocultos para configuración -->
-                    <input type="hidden" name="_next" value="https://juank-dj.com/gracias.html"> <!-- Reemplaza con tu URL -->
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_subject" value="Nueva solicitud de evento!">
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="nombre" class="block text-gray-300 mb-2">Nombre completo</label>
-                            <input type="text" id="nombre" name="nombre" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Tu nombre" required>
-                        </div>
-                        <div>
-                            <label for="email" class="block text-gray-300 mb-2">Correo electrónico</label>
-                            <input type="email" id="email" name="email" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="tu@email.com" required>
-                        </div>
-                    </div>
-                    <div>
-                        <label for="telefono" class="block text-gray-300 mb-2">Teléfono</label>
-                        <input type="tel" id="telefono" name="telefono" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="+593 999999999" required>
-                    </div>
-                    <div>
-                        <label for="evento" class="block text-gray-300 mb-2">Tipo de evento</label>
-                        <select id="evento" name="evento" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
-                            <option value="">Selecciona una opción</option>
-                            <option value="boda">Boda</option>
-                            <option value="fiesta-privada">Fiesta Privada</option>
-                            <option value="corporativo">Evento Corporativo</option>
-                            <option value="otro">Otro</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="fecha" class="block text-gray-300 mb-2">Fecha del evento</label>
-                        <input type="date" id="fecha" name="fecha" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
-                    </div>
-                    <div>
-                        <label for="mensaje" class="block text-gray-300 mb-2">Mensaje</label>
-                        <textarea id="mensaje" name="mensaje" rows="4" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Cuéntame sobre tu evento, ubicación, número de invitados y cualquier detalle especial que quieras compartir" required></textarea>
-                    </div>
-                    <div>
-                        <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-4 px-6 rounded-lg text-lg transition duration-300 transform hover:scale-105 shadow-lg">
-                            Enviar solicitud <i class="fas fa-paper-plane ml-2"></i>
-                        </button>
-                    </div>
-                </form>
-            </div>
-            
-            <div class="lg:w-1/2">
-                <div class="bg-gradient-to-br from-blue-900 to-purple-900 rounded-xl p-8 h-full">
-                    <h3 class="text-2xl font-bold mb-6">Información de contacto</h3>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <div class="bg-blue-600 bg-opacity-20 p-3 rounded-full mr-4">
-                                <i class="fas fa-map-marker-alt text-blue-400 text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold mb-1">Ubicación</h4>
-                                <p class="text-gray-300">Quito, Ecuador</p>
-                                <p class="text-gray-400 text-sm">Servicio en toda la ciudad y áreas cercanas</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="bg-purple-600 bg-opacity-20 p-3 rounded-full mr-4">
-                                <i class="fas fa-phone-alt text-purple-400 text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold mb-1">Teléfono</h4>
-                                <p class="text-gray-300">+593 99 368 1879</p>
-                                <p class="text-gray-400 text-sm">Disponible de lunes a domingo</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="bg-blue-600 bg-opacity-20 p-3 rounded-full mr-4">
-                                <i class="fas fa-envelope text-blue-400 text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold mb-1">Correo electrónico</h4>
-                                <p class="text-gray-300">juanyepezdj@gmail.com</p>
-                                <p class="text-gray-400 text-sm">Respuesta en menos de 24 horas</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="bg-purple-600 bg-opacity-20 p-3 rounded-full mr-4">
-                                <i class="fas fa-clock text-purple-400 text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold mb-1">Horario de atención</h4>
-                                <p class="text-gray-300">10:00 AM - 10:00 PM</p>
-                                <p class="text-gray-400 text-sm">Eventos disponibles a cualquier hora</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-10">
-                        <h4 class="font-bold mb-4">Sígueme en redes sociales</h4>
-                        <div class="flex space-x-4">
-                            <a href="https://www.facebook.com/juanyepezdj.ec" class="w-12 h-12 bg-gray-800 hover:bg-blue-600 rounded-full flex items-center justify-center transition duration-300">
-                                <i class="fab fa-facebook-f text-xl"></i>
-                            </a>
-                            <a href="https://www.instagram.com/juanyepezdj" class="w-12 h-12 bg-gray-800 hover:bg-pink-600 rounded-full flex items-center justify-center transition duration-300">
-                                <i class="fab fa-instagram text-xl"></i>
-                            </a>
-                            <a href="https://wa.me/593993681879" target="_blank" class="w-12 h-12 bg-gray-800 hover:bg-green-500 rounded-full flex items-center justify-center transition duration-300">
-                                <i class="fab fa-whatsapp text-xl"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <a href="#inicio" class="mobile-link">Inicio</a>
+            <a href="#galeria" class="mobile-link">Galería</a>
+            <a href="#servicios" class="mobile-link">Servicios</a>
+            <a href="#know-how" class="mobile-link">Know-How</a>
+            <a href="#contacto" class="mobile-link">Contacto</a>
+            <a href="#contacto" class="btn btn-primary mobile-cta">Reservar Ahora</a>
         </div>
     </div>
-</section>
 
-<script>
-    // Opcional: Puedes agregar este script para mostrar un mensaje después del envío
-    document.querySelector('form').addEventListener('submit', function(e) {
-        // El formulario se enviará automáticamente a formsubmit.co
-        // Este código es solo para feedback visual
-        setTimeout(() => {
-            alert('¡Gracias por tu mensaje! Me pondré en contacto contigo pronto.');
-        }, 500);
-    });
-</script>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center mr-3">
-                            <i class="fas fa-compact-disc text-white text-xl vinyl-spin"></i>
-                        </div>
-                        <span class="text-white text-2xl font-bold glow-text">JuanK<span class="text-blue-400">-DJ</span></span>
-                    </div>
-                    <p class="text-gray-400 mt-2">Servicios profesionales de DJ en Quito</p>
+    <main>
+        <!-- Hero Section -->
+        <section id="inicio" class="hero">
+            <div class="hero-bg">
+                <img src="hero-bg.jpg" alt="DJ Set" class="hero-bg-img" onerror="this.src='https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'">
+                <div class="hero-overlay"></div>
+            </div>
+            
+            <div class="hero-content">
+                <div class="hero-badge reveal">
+                    <span class="pulse-dot"></span>
+                    Disponible para eventos <span id="currentYear"></span>
+                </div>
+                <h1 class="hero-title reveal">
+                    <span class="line">Transformo</span>
+                    <span class="line highlight">tu evento</span>
+                    <span class="line">en leyenda</span>
+                </h1>
+                <p class="hero-subtitle reveal">
+                    DJ profesional, disco móvil y amplificación de alta gama en Quito. 
+                    Creamos la atmósfera perfecta para bodas, quinceaños y eventos corporativos.
+                </p>
+                <div class="hero-cta reveal">
+                    <a href="#contacto" class="btn btn-primary">
+                        <span>Cotiza tu evento</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                    <a href="#galeria" class="btn btn-outline">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                        <span>Ver galería</span>
+                    </a>
                 </div>
                 
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-16">
-                    <div>
-                        <h3 class="text-white font-bold mb-4">Enlaces</h3>
-                        <ul class="space-y-2">
-                            <li><a href="#inicio" class="text-gray-400 hover:text-blue-400 transition duration-300">Inicio</a></li>
-                            <li><a href="#servicios" class="text-gray-400 hover:text-blue-400 transition duration-300">Servicios</a></li>
-                            <li><a href="#galeria" class="text-gray-400 hover:text-blue-400 transition duration-300">Galería</a></li>
-                            <li><a href="#contacto" class="text-gray-400 hover:text-blue-400 transition duration-300">Contacto</a></li>
-                        </ul>
+                <div class="hero-stats reveal">
+                    <div class="stat">
+                        <span class="stat-number" data-count="500">0</span>
+                        <span class="stat-label">Eventos</span>
                     </div>
-                    
-                    <div>
-                        <h3 class="text-white font-bold mb-4">Servicios</h3>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="text-gray-400 hover:text-purple-400 transition duration-300">Bodas</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-purple-400 transition duration-300">Fiestas Privadas</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-purple-400 transition duration-300">Eventos Corporativos</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-purple-400 transition duration-300">Conciertos</a></li>
-                        </ul>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-number" data-count="15">0</span>
+                        <span class="stat-label">Años Exp.</span>
                     </div>
-                    
-                    <div>
-                        <h3 class="text-white font-bold mb-4">Legal</h3>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="text-gray-400 hover:text-gray-300 transition duration-300">Términos y condiciones</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-gray-300 transition duration-300">Política de privacidad</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-gray-300 transition duration-300">Aviso legal</a></li>
-                        </ul>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-number" data-count="100">0</span>
+                        <span class="stat-label">% Éxito</span>
                     </div>
                 </div>
             </div>
-            
-            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2023 JuanK-DJ. Todos los derechos reservados.</p>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-gray-500 hover:text-blue-400 transition duration-300">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" class="text-gray-500 hover:text-pink-600 transition duration-300">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" class="text-gray-500 hover:text-blue-400 transition duration-300">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="text-gray-500 hover:text-red-600 transition duration-300">
-                        <i class="fab fa-youtube"></i>
-                    </a>
+        </section>
+
+        <!-- Marquee Section -->
+        <div class="marquee-section">
+            <div class="marquee">
+                <div class="marquee-content">
+                    <span>BODAS</span><span class="dot">•</span>
+                    <span>QUINCEAÑOS</span><span class="dot">•</span>
+                    <span>CORPORATIVOS</span><span class="dot">•</span>
+                    <span>CUMPLEAÑOS</span><span class="dot">•</span>
+                    <span>BAUTIZOS</span><span class="dot">•</span>
+                    <span>GRADUACIONES</span><span class="dot">•</span>
                 </div>
+                <div class="marquee-content" aria-hidden="true">
+                    <span>BODAS</span><span class="dot">•</span>
+                    <span>QUINCEAÑOS</span><span class="dot">•</span>
+                    <span>CORPORATIVOS</span><span class="dot">•</span>
+                    <span>CUMPLEAÑOS</span><span class="dot">•</span>
+                    <span>BAUTIZOS</span><span class="dot">•</span>
+                    <span>GRADUACIONES</span><span class="dot">•</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Galería Section (Primero, como pediste) -->
+        <section id="galeria" class="gallery section-padding">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag">Portafolio</span>
+                    <h2 class="section-title">Momentos <span class="accent">Reales</span></h2>
+                    <p class="section-desc">Un vistazo a la energía que llevo a cada evento.</p>
+                </div>
+
+                <div class="gallery-grid" id="dynamicGallery">
+                    <!-- El JavaScript insertará las imágenes aquí -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Lightbox -->
+        <div id="lightbox" class="lightbox">
+            <span class="lightbox-close" id="lightboxClose">&times;</span>
+            <img src="" alt="Foto ampliada" class="lightbox-img" id="lightboxImg">
+        </div>
+
+        <!-- Servicios Section -->
+        <section id="servicios" class="services section-padding">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag">Lo que ofrezco</span>
+                    <h2 class="section-title">Servicios <span class="accent">Premium</span></h2>
+                    <p class="section-desc">Cada evento es único. Por eso, adapto mi equipo y mi energía a tu visión.</p>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card reveal">
+                        <div class="service-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"></path><path d="M12 17v4"></path><path d="M7 4h10"></path><path d="M17 4v8a5 5 0 0 1-10 0V4"></path></svg>
+                        </div>
+                        <h3>Bodas de Ensueño</h3>
+                        <p>Desde la ceremonia hasta el último baile. Creo la atmósfera perfecta para el día más importante de sus vidas.</p>
+                        <ul class="service-list">
+                            <li>Musicalización personalizada</li>
+                            <li>Sonido para ceremonia y fiesta</li>
+                            <li>Iluminación ambiental y robótica</li>
+                            <li>Efectos especiales (humo, chispas)</li>
+                        </ul>
+                        <a href="#contacto" class="service-link">Saber más <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                    </div>
+
+                    <div class="service-card reveal">
+                        <div class="service-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"></path><path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"></path><path d="M2 21h20"></path><path d="M7 8v3"></path><path d="M12 8v3"></path><path d="M17 8v3"></path><path d="M7 4h.01"></path><path d="M12 4h.01"></path><path d="M17 4h.01"></path></svg>
+                        </div>
+                        <h3>Quinceaños & Fiestas</h3>
+                        <p>Energía pura para celebrar. Mezclo los éxitos del momento con los clásicos que nunca fallan.</p>
+                        <ul class="service-list">
+                            <li>Sets dinámicos y participativos</li>
+                            <li>Pantallas LED y visuales</li>
+                            <li>Micrófono inalámbrico</li>
+                            <li>Coordinación con animadores</li>
+                        </ul>
+                        <a href="#contacto" class="service-link">Saber más <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                    </div>
+
+                    <div class="service-card reveal">
+                        <div class="service-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><path d="M9 22v-4h6v4"></path><path d="M8 6h.01"></path><path d="M16 6h.01"></path><path d="M12 6h.01"></path><path d="M12 10h.01"></path><path d="M12 14h.01"></path><path d="M16 10h.01"></path><path d="M16 14h.01"></path><path d="M8 10h.01"></path><path d="M8 14h.01"></path></svg>
+                        </div>
+                        <h3>Eventos Corporativos</h3>
+                        <p>Elegancia y profesionalismo. El ambiente musical ideal para lanzamientos, cenas y fiestas de fin de año.</p>
+                        <ul class="service-list">
+                            <li>Música lounge y corporativa</li>
+                            <li>Equipo de alta fidelidad</li>
+                            <li>Puntualidad y protocolo</li>
+                            <li>Facturación electrónica</li>
+                        </ul>
+                        <a href="#contacto" class="service-link">Saber más <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Know-How Section (Antes Experiencia) -->
+        <section id="know-how" class="experience">
+            <div class="experience-bg">
+                <img src="hero-bg.jpg" alt="DJ en vivo" class="parallax-img" onerror="this.src='https://images.unsplash.com/photo-1571266028243-3716f02d2d2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'">
+                <div class="experience-overlay"></div>
+            </div>
+            <div class="container experience-content">
+                <div class="experience-text reveal">
+                    <span class="section-tag light">La Diferencia</span>
+                    <h2 class="section-title text-white">No solo pongo música.<br>Creo <span class="accent">momentos</span>.</h2>
+                    <p>Con más de 15 años de trayectoria, he aprendido que un DJ no solo reproduce canciones; lee la sala, siente la energía y conecta con cada invitado. Mi equipo de audio e iluminación de última generación se combina con una selección musical curada para garantizar que tu pista de baile nunca se vacíe.</p>
+                    <div class="experience-features">
+                        <div class="feature">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                            <span>Sonido Line Array</span>
+                        </div>
+                        <div class="feature">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path></svg>
+                            <span>Iluminación Robótica</span>
+                        </div>
+                        <div class="feature">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+                            <span>Mezclas en Vivo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonios -->
+        <section class="testimonials section-padding">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag">Testimonios</span>
+                    <h2 class="section-title">Voces de <span class="accent">Clientes</span></h2>
+                </div>
+                <div class="testimonials-slider">
+                    <div class="testimonial-card">
+                        <div class="quote-icon">“</div>
+                        <p class="testimonial-text">"Juan no solo fue nuestro DJ, fue el alma de la fiesta. La pista estuvo llena toda la noche y la iluminación fue espectacular. ¡El mejor regalo que nos pudimos dar!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">MG</div>
+                            <div class="author-info">
+                                <strong>María & Gabriel</strong>
+                                <span>Boda en Cumbayá</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="quote-icon">“</div>
+                        <p class="testimonial-text">"Contratamos a JuanK para los 15 de mi hija y superó todas las expectativas. Su selección musical es impecable y sabe cómo leer al público. 100% recomendado."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">CR</div>
+                            <div class="author-info">
+                                <strong>Carlos R.</strong>
+                                <span>Fiesta de Quinceaños</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacto Section -->
+        <section id="contacto" class="contact section-padding">
+            <div class="container">
+                <div class="contact-wrapper">
+                    <div class="contact-info reveal">
+                        <span class="section-tag">Hablemos</span>
+                        <h2 class="section-title">Reserva tu <span class="accent">Fecha</span></h2>
+                        <p>Cuéntame sobre tu evento. Me pondré en contacto en menos de 24 horas para diseñar juntos la experiencia perfecta.</p>
+                        
+                        <div class="contact-details">
+                            <!-- Teléfono Actualizado -->
+                            <a href="tel:+593983580541" class="contact-item">
+                                <div class="contact-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                                </div>
+                                <div>
+                                    <span>Llámame</span>
+                                    <strong>+593 98 358 0541</strong>
+                                </div>
+                            </a>
+                            <a href="mailto:juanyepezdj@gmail.com" class="contact-item">
+                                <div class="contact-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                </div>
+                                <div>
+                                    <span>Escríbeme</span>
+                                    <strong>juanyepezdj@gmail.com</strong>
+                                </div>
+                            </a>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                </div>
+                                <div>
+                                    <span>Ubicación</span>
+                                    <strong>Quito, Ecuador</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="social-links">
+                            <!-- WhatsApp Actualizado -->
+                            <a href="https://wa.me/593983580541" target="_blank" aria-label="WhatsApp">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                            </a>
+                            <a href="https://www.instagram.com/juanyepezdj" target="_blank" aria-label="Instagram">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                            </a>
+                            <a href="https://www.facebook.com/juanyepezdj.ec" target="_blank" aria-label="Facebook">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-wrapper reveal">
+                        <form action="https://formsubmit.co/juanyepezdj@gmail.com" method="POST" class="contact-form" id="contactForm">
+                            <input type="hidden" name="_next" value="gracias.html">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_subject" value="Nueva Reserva - JuanK DJ">
+                            
+                            <div class="form-group">
+                                <input type="text" name="nombre" id="nombre" required placeholder=" ">
+                                <label for="nombre">Nombre completo</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="email" id="email" required placeholder=" ">
+                                <label for="email">Correo electrónico</label>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="tel" name="telefono" id="telefono" required placeholder=" ">
+                                    <label for="telefono">Teléfono</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="date" name="fecha" id="fecha" required placeholder=" ">
+                                    <label for="fecha" class="date-label">Fecha</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <select name="evento" id="evento" required>
+                                    <option value="" disabled selected>Tipo de evento</option>
+                                    <option value="Boda">Boda</option>
+                                    <option value="Quinceaños">Quinceaños</option>
+                                    <option value="Cumpleaños">Cumpleaños</option>
+                                    <option value="Corporativo">Corporativo</option>
+                                    <option value="Bautizo">Bautizo</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="mensaje" id="mensaje" rows="3" required placeholder=" "></textarea>
+                                <label for="mensaje">Mensaje / Detalles</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <span>Enviar Solicitud</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#inicio" class="logo">
+                        <img src="logo.png" alt="JuanK-DJ Logo" class="logo-img">
+                    </a>
+                    <p>Servicios profesionales de DJ, disco móvil y amplificación en Quito. Hacemos que tu evento sea inolvidable.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navegación</h4>
+                    <a href="#inicio">Inicio</a>
+                    <a href="#galeria">Galería</a>
+                    <a href="#servicios">Servicios</a>
+                    <a href="#know-how">Know-How</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Contacto</h4>
+                    <!-- Footer Actualizado -->
+                    <a href="tel:+593983580541">+593 98 358 0541</a>
+                    <a href="mailto:juanyepezdj@gmail.com">juanyepezdj@gmail.com</a>
+                    <p>Quito, Ecuador</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYearFooter"></span> JuanK-DJ. Todos los derechos reservados.</p>
+                <p>Diseñado con pasión.</p>
             </div>
         </div>
     </footer>
 
+    <!-- JavaScript Unificado -->
     <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
+        document.addEventListener('DOMContentLoaded', () => {
+            // 0. Actualizar Año Automáticamente (Hero y Footer)
+            const currentYear = new Date().getFullYear();
+            document.getElementById('currentYear').textContent = currentYear;
+            document.getElementById('currentYearFooter').textContent = currentYear;
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    // Close mobile menu if open
-                    const mobileMenu = document.getElementById('mobile-menu');
-                    mobileMenu.classList.add('hidden');
+            // 0.1 Generar Galería Dinámica desde GitHub
+            const galleryContainer = document.getElementById('dynamicGallery');
+            
+            // ⚙️ CONFIGURACIÓN DE TU GITHUB
+            const githubUser = 'juanyepezdj';
+            const githubRepo = 'juank-dj-fotos';
+            const githubBranch = 'main';
+            const totalFotos = 30; 
+
+            if (galleryContainer) {
+                for (let i = 1; i <= totalFotos; i++) {
+                    // Saltamos el 13 porque es un video .MP4
+                    if (i === 13) continue; 
+
+                    const item = document.createElement('div');
+                    item.className = 'gallery-item reveal';
                     
-                    // Scroll to target
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+                    const baseUrl = `https://cdn.jsdelivr.net/gh/${githubUser}/${githubRepo}@${githubBranch}/galeria/${i}`;
+                    
+                    // Estructura minimalista con el icono de lupa
+                    item.innerHTML = `
+                        <img src="${baseUrl}.jpg" alt="Evento ${i}" loading="lazy" 
+                             onerror="this.onerror=null; this.src='${baseUrl}.JPG'; if(this.complete && this.naturalWidth === 0){ this.parentElement.style.display='none'; }"
+                             onload="this.parentElement.classList.add('active');">
+                        <div class="gallery-overlay">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                        </div>
+                    `;
+                    
+                    galleryContainer.appendChild(item);
+                }
+
+                // --- Lógica del Lightbox ---
+                const lightbox = document.getElementById('lightbox');
+                const lightboxImg = document.getElementById('lightboxImg');
+                const lightboxClose = document.getElementById('lightboxClose');
+
+                galleryContainer.addEventListener('click', (e) => {
+                    if (e.target.tagName === 'IMG' && e.target.naturalWidth > 0) {
+                        lightboxImg.src = e.target.src;
+                        lightbox.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+
+                lightboxClose.addEventListener('click', () => {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target !== lightboxImg && e.target !== lightboxClose) {
+                        lightbox.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+
+            // 1. Navbar Scroll Effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
                 }
             });
-        });
 
-      
+            // 2. Mobile Menu
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
 
-        // Animation on scroll
-        const observerOptions = {
-            threshold: 0.1
-        };
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('active');
+                    const spans = mobileMenuBtn.querySelectorAll('span');
+                    if (mobileMenu.classList.contains('active')) {
+                        spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                        spans[1].style.opacity = '0';
+                        spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+                    } else {
+                        spans[0].style.transform = 'none';
+                        spans[1].style.opacity = '1';
+                        spans[2].style.transform = 'none';
+                    }
+                });
+            }
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fadeIn');
-                }
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    const spans = mobileMenuBtn.querySelectorAll('span');
+                    spans[0].style.transform = 'none';
+                    spans[1].style.opacity = '1';
+                    spans[2].style.transform = 'none';
+                });
             });
-        }, observerOptions);
 
-        document.querySelectorAll('.event-card, .mixer-control').forEach(card => {
-            observer.observe(card);
+            // 3. Smooth Scrolling & Active Nav Link
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (scrollY >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // 4. Reveal Animations on Scroll
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // 5. Counter Animation
+            const counters = document.querySelectorAll('.stat-number');
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = parseInt(entry.target.getAttribute('data-count'));
+                        let count = 0;
+                        const duration = 2000;
+                        const increment = target / (duration / 16);
+
+                        const updateCounter = () => {
+                            count += increment;
+                            if (count < target) {
+                                entry.target.textContent = Math.ceil(count);
+                                requestAnimationFrame(updateCounter);
+                            } else {
+                                entry.target.textContent = target;
+                            }
+                        };
+                        updateCounter();
+                        counterObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            counters.forEach(counter => counterObserver.observe(counter));
+
+            // 6. Form Input Focus Effects
+            const inputs = document.querySelectorAll('.form-group input, .form-group textarea');
+            inputs.forEach(input => {
+                input.addEventListener('focus', () => input.parentElement.classList.add('focused'));
+                input.addEventListener('blur', () => {
+                    if (input.value === '') input.parentElement.classList.remove('focused');
+                });
+            });
         });
     </script>
 </body>
